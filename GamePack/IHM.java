@@ -7,6 +7,9 @@ import DungeonPack.Dungeon;
 import DungeonPack.DiscoveryMap.DiscoveryStates;
 import MonsterPack.Monster;
 import MonsterPack.MonsterArt;
+import TreasurePack.Armor;
+import TreasurePack.Treasure;
+import TreasurePack.Weapon;
 
 public class IHM {
     Scanner s;
@@ -112,5 +115,19 @@ public class IHM {
         }
         toPrint += " " + hp + "/" + maxHP+ " HP";
         System.out.println(toPrint);
+    }
+
+    public static void showTreasure(Treasure t){
+        System.out.println(t.getArt());
+        System.out.println(t.getTitle());
+
+        if (t instanceof Weapon){
+            Weapon weapon = (Weapon) t;
+            System.out.println("Damage Points : "+ weapon.getDamagePoint());
+        }
+        else{
+            Armor armor = (Armor) t;
+            System.out.println("Armor Points : "+ armor.getArmorHealth()+ " / "+ armor.getArmorPoint());
+        }
     }
 }

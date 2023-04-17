@@ -1,4 +1,4 @@
-package TreasurePAck;
+package TreasurePack;
 
 import java.util.Random;
 
@@ -59,5 +59,54 @@ public class TreasureName {
             "splint armor"
         };
         return armorType[new Random().nextInt(armorType.length)];
+    }
+
+    public static String getBowType(){
+        String bowType[] = {
+
+            "great bow",
+            "long bow",
+            "short bow",
+            "curved bow",
+            "hunting bow",
+            "coumpound bow",
+            "yumi bow"
+        };
+        return bowType[new Random().nextInt(bowType.length)];
+    }
+
+    public static String getSwordType(){
+        String swordType[] = {
+            "longsword",
+            "shortsword",
+            "katana",
+            "wakizashi",
+            "broadsword",
+            "greatsword"
+        };
+        return swordType[new Random().nextInt(swordType.length)];
+    }
+
+    public static String getAxeType(){
+        String axeType[] = {
+            "short axe",
+            "great axe",
+            "moon axe",
+            "double-edged axe"
+        };
+        return axeType[new Random().nextInt(axeType.length)];
+    }
+
+    public static String getGunType(){
+        String gunType[] = {
+            "P2020",
+            "R8 Revolver",
+            "Colt 1911",
+            "Glock 18",
+            "Smith&Wesson 642 CT",
+            "USP",
+            "Barretta M9"
+        };
+        return gunType[new Random().nextInt(gunType.length)];
     }
 }

@@ -1,4 +1,4 @@
-package TreasurePAck;
+package TreasurePack;
 
 import java.util.Random;
 
@@ -15,7 +15,16 @@ public class Armor extends Treasure{
         else if (rarityRoll < 92)   this.rarity = 3;
         else                        this.rarity = 4;
 
-        //les points d'armures sont égaux a la rareté + un roll qui va de -rareté à + rareté
+        //les points d'armures sont égaux a la rareté*2 + un roll qui va de -rareté à + rareté
+        this.armorPoint = (this.rarity+1)*2 + new Random().nextInt(2*(this.rarity)+1) - this.rarity;
+        this.armorHealth = armorPoint;
+        
+        this.name = TreasureName.getTreasureAdjective() + " " + TreasureName.getArmorType();
+        this.art = TreasureArt.getArmorArt();
+    }
+
+    public Armor(Integer rarity){
+        super(null, rarity);
         this.armorPoint = (this.rarity+1) + new Random().nextInt(2*(this.rarity)+1) - this.rarity;
         this.armorHealth = armorPoint;
         
@@ -33,6 +42,14 @@ public class Armor extends Treasure{
 
     public void repair(){
         this.armorHealth = this.armorPoint;
+    }
+
+    public Integer getArmorPoint(){
+        return this.armorPoint;
+    }
+
+    public Integer getArmorHealth(){
+        return this.armorHealth;
     }
 
 

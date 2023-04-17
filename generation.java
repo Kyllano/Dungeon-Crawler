@@ -46,6 +46,9 @@ public class generation {
                 case "map":
                     IHM.showMap(game.getDungeon(), game.getPlayer());
                     break;
+                case "T":
+                    IHM.showTreasure(game.getCurrentRoom().getTreasure());
+                    break;
                 case "heal":
                 System.out.println("You heal");
                     game.getPlayer().fullHeal();
