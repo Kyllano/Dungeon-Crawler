@@ -4,35 +4,36 @@ import GamePack.IHM;
 public class generation {
     public static void main(String[] args) {
         Game game = new Game(20);
-        
-        Boolean cond = true;
+
         String userInput = "";
-        //IHM.showMap(game.getDungeon(), game.getPlayer());
         IHM ihm = game.ihm;
+        IHM.showMap(game.getDungeon(), game.getPlayer());
         
         
-        while (cond){
+        while (!userInput.equals("quit") && ! game.isGameOver()){
             userInput = ihm.input();
+            
 
             switch (userInput) {
                 case "N":
                     System.out.println("Going North!");
                     game.movePlayerNorth();
+                    IHM.showMap(game.getDungeon(), game.getPlayer());
                     break;
                 case "S":
                     System.out.println("Going South!");
                     game.movePlayerSouth();
+                    IHM.showMap(game.getDungeon(), game.getPlayer());
                     break;
                 case "E":
                     System.out.println("Going East!");
                     game.movePlayerEast();
+                    IHM.showMap(game.getDungeon(), game.getPlayer());
                     break;
                 case "W":
                     System.out.println("Going West!");
                     game.movePlayerWest();
-                    break;
-                case "quit":
-                    cond = false;
+                    IHM.showMap(game.getDungeon(), game.getPlayer());
                     break;
                 case "C":
                     System.out.println("Engagine combat !");

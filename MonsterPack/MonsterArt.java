@@ -1,6 +1,37 @@
 package MonsterPack;
 
 public class MonsterArt {
+    public static String getDeadMonster(){
+        String art = "";
+
+        art +="                            ,--.  \n";
+        art +="                           {    } \n";
+        art +="                           K,   } \n";
+        art +="                          /  ~Y`  \n";
+        art +="                     ,   /   /    \n";
+        art +="                    {_'-K.__/     \n";
+        art +="                      `/-.__L._   \n";
+        art +="                      /  ' /`\\_} \n";
+        art +="                     /  ' /       \n";
+        art +="             ____   /  ' /        \n";
+        art +="      ,-'~~~~    ~~/  ' /_        \n";
+        art +="    ,'             ``~~~  ',      \n";
+        art +="   (                        Y     \n";
+        art +="  {                         I     \n";
+        art +=" {      -                    `,   \n";
+        art +=" |       ',                   )   \n";
+        art +=" |        |   ,..__      __. Y    \n";
+        art +=" |    .,_./  Y ' / ^Y   J   )|    \n";
+        art +=" \\           |' /   |   |   ||   \n";
+        art +="  \\          L_/    . _ (_,.'(   \n";
+        art +="   \\,   ,      ^^\"\"' / |      )\n";
+        art +="     \\_  \\          /,L]     /  \n";
+        art +="       '-_~-,       ` `   ./`     \n";
+        art +="          `'{_            )       \n";
+        art +="              ^^\\..___,.--`      \n";
+        return art;
+    }
+
     public static String getDragonArt(){
         String art = "";
 

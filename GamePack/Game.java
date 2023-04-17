@@ -9,6 +9,7 @@ public class Game {
     private Player player;
     private Dungeon dungeon;
     public IHM ihm;
+    public Boolean gameOver;
 
     public Game(Integer dungeonDimension){
         super();
@@ -16,6 +17,15 @@ public class Game {
         this.player = new Player(dungeonDimension/2, dungeonDimension/2, this);
         this.dungeon.getDiscoveryMap().setRoomDiscovered(dungeonDimension/2, dungeonDimension/2);
         this.ihm = new IHM();
+        this.gameOver = false;
+    }
+
+    public void GameOver(Monster m){
+        System.out.println(GameArt.getDeathArt());
+        this.gameOver = true;
+        System.out.println("You have been defeated by "+m.getMonsterName());
+        System.out.println("You won " + player.getFightWon() + " fights in this run");
+        System.out.println("Better luck next run soldier!");
     }
 
     public void movePlayerNorth(){
@@ -72,5 +82,9 @@ public class Game {
 
     public Dungeon getDungeon(){
         return this.dungeon;
+    }
+
+    public Boolean isGameOver(){
+        return this.gameOver;
     }
 }

@@ -6,6 +6,7 @@ import DungeonPack.DiscoveryMap;
 import DungeonPack.Dungeon;
 import DungeonPack.DiscoveryMap.DiscoveryStates;
 import MonsterPack.Monster;
+import MonsterPack.MonsterArt;
 
 public class IHM {
     Scanner s;
@@ -81,6 +82,11 @@ public class IHM {
     }
 
     public static void showMonster(Monster monster){
+        if (monster == null) {
+            System.out.println(MonsterArt.getDeadMonster());
+            System.out.println("The monster in this room has been defeated");
+            return ;
+        }
         Monster m = monster;
         String monsterArt = m.getMonsterArt();
         String monsterName = m.getMonsterName();

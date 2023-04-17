@@ -8,6 +8,7 @@ public class Player extends Entity{
     public Integer x;
     public Integer y;
     private Game game;
+    private Integer fightWon;
 
     
     public Player(Integer startingX, Integer startingY, Game game){
@@ -15,6 +16,7 @@ public class Player extends Entity{
         this.x = startingX;
         this.y = startingY;
         this.game = game;
+        this.fightWon = 0;
     }
 
     public void EngageCombat(Monster m, IHM ihm){
@@ -45,14 +47,17 @@ public class Player extends Entity{
             System.out.println("You defeated "+m.getMonsterName()+ "!");
             System.out.println("You feel stronger and get 1 more HP");
             this.game.getCurrentRoom().setMonster(null);
+            this.fightWon ++;
+            this.fullHeal();
         }
         else if (this.getHP() <= 0){
-            System.out.println(GameArt.getDeathArt());
             System.out.println(m.getMonsterName() + " has defeated you!");
-            //TODO GAME OVER
+            game.GameOver(m);
         }
         else{
             System.out.println("You successfully fled the combat. "+m.getMonsterName()+" will have time to recover its forces");
+            this.fullHeal();
+            m.fullHeal();
         }
     }
 
@@ -108,4 +113,7 @@ public class Player extends Entity{
         return userInput;
     }
 
+    public Integer getFightWon(){
+        return this.fightWon;
+    }
 }
