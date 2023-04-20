@@ -3,6 +3,7 @@ package TreasurePack;
 import java.util.Random;
 
 public class Armor extends Treasure{
+
     Integer armorPoint;
     Integer armorHealth;
 
@@ -34,9 +35,11 @@ public class Armor extends Treasure{
     public Integer takeDamage(Integer damage){
         this.armorHealth -= damage;
         if (this.armorHealth <= 0){
+            System.out.println("Your armor takes "+ (damage + this.armorHealth)+ " damages");
             System.out.println("The "+ this.name + " has broken!");
             return this.armorHealth * (-1); //On est sur que la vie de l'armure est négative, on renvoie donc le nombre de point de vie que le joueur doit perdre en positif
         }
+        System.out.println("You armor absorb all of the "+ damage +" damage !");
         return -1; // si le joueur ne doit pas prendre de dégat, on peut renvoyer -1
     }
 

@@ -11,7 +11,8 @@ import TreasurePack.Armor;
 import TreasurePack.Treasure;
 import TreasurePack.Weapon;
 
-public class IHM {
+public class IHM{
+
     Scanner s;
 
     public IHM(){

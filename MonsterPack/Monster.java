@@ -19,6 +19,10 @@ public class Monster extends Entity{
     private String name;
     private String art;
 
+    public Monster(){
+        
+    }
+
     public Monster(Integer lvl){
         super(lvl*5 + (new Random().nextInt(2*lvl)-lvl));
         this.lvl = lvl;

@@ -1,14 +1,18 @@
 package GamePack;
 
+import java.io.Serializable;
+
 import DungeonPack.Dungeon;
 import DungeonPack.DungeonUtils;
 import MonsterPack.Monster;
 import DungeonPack.Room;
 
-public class Game {
+public class Game implements Serializable{
+    private static final long serialVersionUID = 1L;
+
     private Player player;
     private Dungeon dungeon;
-    public IHM ihm;
+    public transient IHM ihm;
     public Boolean gameOver;
 
     public Game(Integer dungeonDimension){

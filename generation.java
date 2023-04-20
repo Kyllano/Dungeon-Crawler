@@ -1,15 +1,17 @@
 import GamePack.Game;
+import GamePack.GameArt;
 import GamePack.IHM;
 
 public class generation {
     public static void main(String[] args) {
+        System.out.println(GameArt.getKnightArt());
         Game game = new Game(20);
 
         String userInput = "";
         IHM ihm = game.ihm;
         IHM.showMap(game.getDungeon(), game.getPlayer());
         
-        
+        System.out.print(">");
         while (!userInput.equals("quit") && ! game.isGameOver()){
             userInput = ihm.input();
             
@@ -47,13 +49,14 @@ public class generation {
                     IHM.showMap(game.getDungeon(), game.getPlayer());
                     break;
                 case "T":
-                    IHM.showTreasure(game.getCurrentRoom().getTreasure());
+                    game.getPlayer().showEquipement();
                     break;
                 case "heal":
-                System.out.println("You heal");
+                    System.out.println("You heal");
                     game.getPlayer().fullHeal();
-                
+                    break;
             }
+            System.out.print(">");
 
         }
     }

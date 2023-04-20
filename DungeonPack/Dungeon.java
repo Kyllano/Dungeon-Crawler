@@ -1,9 +1,12 @@
 package DungeonPack;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Dungeon {
+public class Dungeon implements Serializable{
+    private static final long serialVersionUID = 1L;
+
     private Integer dimension;
     private Room[][] rooms;
     private Integer maxCoverage; // la couverture en pourcentage

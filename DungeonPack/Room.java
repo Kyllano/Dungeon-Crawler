@@ -1,5 +1,6 @@
 package DungeonPack;
 
+import java.io.Serializable;
 import java.util.Random;
 
 import MonsterPack.*;
@@ -8,7 +9,9 @@ import TreasurePack.Treasure;
 import TreasurePack.Weapon;
 
 
-public class Room {
+public class Room implements Serializable{
+    private static final long serialVersionUID = 1L;
+
     private Integer x;
     private Integer y;
     private Monster monster;
@@ -42,5 +45,9 @@ public class Room {
 
     public Treasure getTreasure(){
         return this.treasure;
+    }
+
+    public void setTreasure(Treasure t){
+        this.treasure = t;
     }
 }

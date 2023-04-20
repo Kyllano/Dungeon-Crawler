@@ -1,8 +1,16 @@
 package GamePack;
 
-public class Entity {
+import java.io.Serializable;
+
+public class Entity implements Serializable{
+    private static final long serialVersionUID = 1L;
+
     private Integer hp;
     private Integer maxHp;
+
+    public Entity(){
+
+    }
 
     public Entity(Integer maxHp){
         this.maxHp = maxHp;

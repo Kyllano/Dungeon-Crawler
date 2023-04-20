@@ -1,6 +1,10 @@
 package DungeonPack;
 
-public class DiscoveryMap {
+import java.io.Serializable;
+
+public class DiscoveryMap implements Serializable{
+    private static final long serialVersionUID = 1L;
+
     public enum DiscoveryStates {
         UNDISCOVERED,   //Ne sais pas si il y a une salle ou un mur 
         UNKNOWN,        //Assez proche pour voir si c'est une salle ou un mur, mais non visité

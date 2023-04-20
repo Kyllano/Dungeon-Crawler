@@ -3,6 +3,7 @@ package TreasurePack;
 import java.util.Random;
 
 public class Weapon extends Treasure{
+
     enum WeaponType {
         BOW,
         SWORD,

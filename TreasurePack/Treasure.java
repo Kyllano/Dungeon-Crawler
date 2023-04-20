@@ -1,6 +1,10 @@
 package TreasurePack;
 
-public class Treasure {
+import java.io.Serializable;
+
+public class Treasure implements Serializable{
+    private static final long serialVersionUID = 1L;
+
     protected Integer rarity; //De 0 à 4 pour common, uncommon, rare, epic, legendary
     protected String name;
     protected String art;
