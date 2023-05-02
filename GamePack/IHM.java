@@ -24,6 +24,18 @@ public class IHM{
         return s.nextLine();
     }
 
+    public Integer inputNumber(){
+        while(true){
+            try {
+                Integer userInput = s.nextInt();
+                return userInput;
+            } catch (Exception e) {
+                System.out.println("Invalid number");
+                s.nextLine();
+            }
+        }
+    }
+
     /* 
      public static void setConsoleToUTF8() {
          try {

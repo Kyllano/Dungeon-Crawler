@@ -1,6 +1,8 @@
+import GamePack.DM;
 import GamePack.Game;
 import GamePack.GameArt;
 import GamePack.IHM;
+import GamePack.Save;
 
 public class generation {
     public static void main(String[] args) {
@@ -17,6 +19,7 @@ public class generation {
             
 
             switch (userInput) {
+
                 case "N":
                     System.out.println("Going North!");
                     game.movePlayerNorth();
@@ -54,6 +57,15 @@ public class generation {
                 case "heal":
                     System.out.println("You heal");
                     game.getPlayer().fullHeal();
+                    break;
+                case "save":
+                    Save.saveGameIHM(ihm, game);
+                    break;
+                case "load":
+                    game = Save.loadGameIHM(ihm);
+                    break;
+                case "DM" :
+                    DM.askDM(game);
                     break;
             }
             System.out.print(">");

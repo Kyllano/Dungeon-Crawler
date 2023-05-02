@@ -5,13 +5,13 @@ import java.util.Random;
 import GamePack.Entity;
 
 public class Monster extends Entity{
-    enum MonsterType {
+    public enum MonsterType {
         SKELETON,
         ZOMBIE,
         DRAGON,
         CRAB,
         WOLF,
-        FROG
+        SLIME
     }
 
     private Integer lvl;
@@ -23,6 +23,40 @@ public class Monster extends Entity{
         
     }
 
+    public Monster(Integer lvl, MonsterType monsterType){
+        super(lvl*5 + (new Random().nextInt(2*lvl)-lvl));
+        this.lvl = lvl;
+        this.monsterType = monsterType;
+        String monsterTypeStr;
+        switch (this.monsterType) {
+            case SKELETON:
+                this.art = MonsterArt.getSkeletonArt();
+                break;
+            case ZOMBIE:
+                this.art = MonsterArt.getZombieArt();
+                break;
+            case DRAGON:
+                this.art = MonsterArt.getDragonArt();
+                break;
+            case CRAB:
+                this.art = MonsterArt.getCrabArt();
+                break;
+            case WOLF:
+                this.art = MonsterArt.getWolfArt();
+                break;
+            case SLIME:
+                this.art = MonsterArt.getSlimeArt();
+                break;
+            default:
+                monsterTypeStr = "Unknown";
+                this.art = "???";
+                break;
+            }   
+        monsterTypeStr = monsterType.name().substring(0, 1).toUpperCase() + monsterType.name().substring(1);
+
+        this.name = MonsterName.RandomMonsterNickname() + ", The "+ MonsterName.RandomMonsterAdjective() + " " + monsterTypeStr;
+    }
+
     public Monster(Integer lvl){
         super(lvl*5 + (new Random().nextInt(2*lvl)-lvl));
         this.lvl = lvl;
@@ -31,34 +65,29 @@ public class Monster extends Entity{
         String monsterTypeStr;
         switch (this.monsterType) {
             case SKELETON:
-                monsterTypeStr = "Skeleton";
                 this.art = MonsterArt.getSkeletonArt();
                 break;
             case ZOMBIE:
-                monsterTypeStr = "Zombie";
                 this.art = MonsterArt.getZombieArt();
                 break;
             case DRAGON:
-                monsterTypeStr = "Dragon";
                 this.art = MonsterArt.getDragonArt();
                 break;
             case CRAB:
-                monsterTypeStr = "Crab";
                 this.art = MonsterArt.getCrabArt();
                 break;
             case WOLF:
-                monsterTypeStr = "Wolf";
                 this.art = MonsterArt.getWolfArt();
                 break;
-            case FROG:
-                monsterTypeStr = "Slime";
+            case SLIME:
                 this.art = MonsterArt.getSlimeArt();
                 break;
             default:
                 monsterTypeStr = "Unknown";
                 this.art = "???";
                 break;
-        }
+            }   
+        monsterTypeStr = monsterType.name().substring(0, 1).toUpperCase() + monsterType.name().substring(1);
 
         this.name = MonsterName.RandomMonsterNickname() + ", The "+ MonsterName.RandomMonsterAdjective() + " " + monsterTypeStr;
     }
@@ -79,5 +108,9 @@ public class Monster extends Entity{
         Random r = new Random();
         Integer damage = (r.nextInt(lvl)+1) * lvl;
         return damage;
+    }
+
+    public MonsterType getMonsterType(){
+        return this.monsterType;
     }
 }

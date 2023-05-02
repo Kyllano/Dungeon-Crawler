@@ -113,4 +113,8 @@ public class Dungeon implements Serializable{
     public DiscoveryMap getDiscoveryMap(){
         return this.discoveryMap;
     }
+
+    public void setDiscoveryMap(DiscoveryMap discoveryMap){
+        this.discoveryMap = discoveryMap;
+    }
 }

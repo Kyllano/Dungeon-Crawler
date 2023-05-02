@@ -33,4 +33,8 @@ public class Entity implements Serializable{
     public Integer getMaxHP(){
         return this.maxHp;
     }
+
+    public void setMaxHP(int newMaxHP){
+        this.maxHp = newMaxHP;
+    }
 }

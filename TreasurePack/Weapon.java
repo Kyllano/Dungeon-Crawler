@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Weapon extends Treasure{
 
-    enum WeaponType {
+    public enum WeaponType {
         BOW,
         SWORD,
         AXE,
@@ -43,6 +43,30 @@ public class Weapon extends Treasure{
                 this.name = TreasureName.getTreasureAdjective() + " " + TreasureName.getGunType();
                 break;
 
+        }
+    }
+
+    public Weapon(int rarity, WeaponType weaponType){
+        super(null, rarity);
+        this.damagePoint = (this.rarity+1) + new Random().nextInt(2*(this.rarity)+1) - this.rarity;
+        this.weaponType = weaponType;
+        switch (this.weaponType) {
+            case BOW:
+                this.art = TreasureArt.getBowArt();
+                this.name = TreasureName.getTreasureAdjective() + " " + TreasureName.getBowType();
+                break;
+            case SWORD:
+                this.art = TreasureArt.getSwordArt();
+                this.name = TreasureName.getTreasureAdjective() + " " + TreasureName.getSwordType();
+                break;
+            case AXE:
+                this.art = TreasureArt.getAxeArt();
+                this.name = TreasureName.getTreasureAdjective() + " " + TreasureName.getAxeType();
+                break;
+            case GUN:
+                this.art = TreasureArt.getGunArt();
+                this.name = TreasureName.getTreasureAdjective() + " " + TreasureName.getGunType();
+                break;
         }
     }
 

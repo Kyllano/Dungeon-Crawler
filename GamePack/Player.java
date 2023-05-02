@@ -66,6 +66,7 @@ public class Player extends Entity {
 
             this.game.getCurrentRoom().setMonster(null);
             this.fightWon ++;
+            this.setMaxHP(this.getMaxHP() + 1);
             this.fullHeal();
         }
         else if (this.getHP() <= 0){

@@ -14,6 +14,7 @@ public class Game implements Serializable{
     private Dungeon dungeon;
     public transient IHM ihm;
     public Boolean gameOver;
+    public DM dm;
 
     public Game(Integer dungeonDimension){
         super();
@@ -70,6 +71,34 @@ public class Game implements Serializable{
             dungeon.getDiscoveryMap().setRoomDiscovered(player.x, player.y+1);
             player.y += 1;
         }
+    }
+
+    public void moveDMNorth(){
+        if (!DungeonUtils.isCoordsValid(player.x-1, player.y, dungeon.getDimension())){
+            return;
+        }
+        player.x -= 1;
+    }
+
+    public void moveDMSouth(){
+        if (!DungeonUtils.isCoordsValid(player.x+1, player.y, dungeon.getDimension())){
+            return;
+        }
+        player.x += 1;
+    }
+
+    public void moveDMWest(){
+        if (!DungeonUtils.isCoordsValid(player.x, player.y-1, dungeon.getDimension())){
+            return;
+        }
+        player.y -= 1;
+    }
+
+    public void moveDMEast(){
+        if (!DungeonUtils.isCoordsValid(player.x, player.y+1, dungeon.getDimension())){
+            return;
+        }
+        player.y += 1;
     }
 
     public Monster getCurrentRoomMonster(){
