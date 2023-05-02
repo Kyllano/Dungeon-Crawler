@@ -4,7 +4,7 @@ import GamePack.GameArt;
 import GamePack.IHM;
 import GamePack.Save;
 
-public class generation {
+public class Main {
     public static void main(String[] args) {
         System.out.println(GameArt.getKnightArt());
         Game game = new Game(20);
