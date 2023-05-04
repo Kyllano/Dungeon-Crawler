@@ -8,6 +8,9 @@ import TreasurePack.Treasure;
 import TreasurePack.TreasureArt;
 import TreasurePack.Weapon;
 
+/**
+ * Classe permettant de représenter le joueur
+ */
 public class Player extends Entity {
 
     public Integer x;
@@ -18,7 +21,12 @@ public class Player extends Entity {
     private Weapon weapon;
 
 
-    
+    /**
+     * Constructeur de classe
+     * @param startingX Coordonnée de départ du joueur
+     * @param startingY Coordonnée de départ du joueur
+     * @param game      Le je dans lequel le joueur doit être contenu
+     */
     public Player(Integer startingX, Integer startingY, Game game){
         super(5);
         this.x = startingX;
@@ -27,6 +35,11 @@ public class Player extends Entity {
         this.fightWon = 0;
     }
 
+    /**
+     * Permet d'engager un combat avec un monstre
+     * @param m     Monstre a attaquer
+     * @param ihm   Objet IHM pour les inputs
+     */
     public void EngageCombat(Monster m, IHM ihm){
 
         IHM.showMonster(m);
@@ -44,6 +57,9 @@ public class Player extends Entity {
             if (!continueCombat){
                 m.fullHeal();
                 this.fullHeal();
+                if (this.hasArmor()){
+                    this.getArmor().repair();
+                }
             }
 
             System.out.println("\n");
@@ -68,6 +84,9 @@ public class Player extends Entity {
             this.fightWon ++;
             this.setMaxHP(this.getMaxHP() + 1);
             this.fullHeal();
+            if (this.hasArmor()){
+                this.getArmor().repair();
+            }
         }
         else if (this.getHP() <= 0){
             System.out.println(m.getMonsterName() + " has defeated you!");
@@ -80,6 +99,10 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * Permet d'effectuer un tour d'attaque
+     * @param m Monstre à attaquer
+     */
     private void attackTurn(Monster m){
         Boolean playerAttacks = new Random().nextBoolean();
         if (playerAttacks){
@@ -117,6 +140,10 @@ public class Player extends Entity {
         System.out.println("\n");
     }
 
+    /**
+     * Permet à un joueur de faire un jet de dégât
+     * @return
+     */
     public Integer rollDamage(){
         Integer damage = new Random().nextInt(2)+1;
         if (this.hasWeapon()){
@@ -125,9 +152,14 @@ public class Player extends Entity {
         return damage;
     }
 
+    /**
+     * Permet de cvérifier si l'utilisateur veut continuer à attaquer la monstre ou si il veut fuir
+     * @param ihm   Objet IHM pour les inputs
+     * @return      True si le joueur veut continuer le combat
+     */
     private Boolean checkIfContinueCombat(IHM ihm){
         String action = askIfContinueCombat(ihm);
-        switch (action) {
+        switch (action.toUpperCase()) {
             case "R":
                 System.out.println("You are fleeing the combat...");
                 return false;
@@ -140,18 +172,28 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * Permet d'effectuer la demande de poursuite du combat
+     * @param ihm   objet IHM pour l'input
+     * @return      la réponse de l'utilisateur
+     */
     private String askIfContinueCombat(IHM ihm){
         String userInput = "";
-        while (!userInput.equals("A") && !userInput.equals("R")){
+        while (!userInput.equalsIgnoreCase("A") && !userInput.equalsIgnoreCase("R")){
             System.out.println("What action will you take? A: Attack R:Run");
             userInput = ihm.input();
         }
         return userInput;
     }
 
+    /**
+     * Permet de checker si l'utilisateur veut ouvrir le trésor
+     * @param ihm   Objet IHM pour les input
+     * @return      True si l'utilisateur veut ouvrir le trésor
+     */
     private Boolean checkIfOpenTreasure(IHM ihm){
         String action = askIfOpenTreasure(ihm);
-        switch (action) {
+        switch (action.toUpperCase()) {
             case "O":
                 Treasure t = this.game.getCurrentRoom().getTreasure();
                 System.out.println(t.getArt());
@@ -167,18 +209,28 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * Permet d'effectuer la demande d'ouverture de trésor
+     * @param ihm   Objet IHM pour les input
+     * @return      la réponse de l'utilisateur
+     */
     private String askIfOpenTreasure(IHM ihm){
         String userInput = "";
-        while (!userInput.equals("O") && !userInput.equals("D")){
+        while (!userInput.equalsIgnoreCase("O") && !userInput.equalsIgnoreCase("D")){
             System.out.println("What action will you take? O:Open Treasure | D:Discard Treasure");
             userInput = ihm.input();
         }
         return userInput;
     }
 
+    /**
+     * Permet de checker si l'utilisateur veut équiper le trésor
+     * @param ihm   Objet IHM pour les input
+     * @return      True si il veut équiper le trésor
+     */
     private Boolean checkIfUseTreasure(IHM ihm){
         String action = askIfUseTreasure(ihm);
-        switch (action) {
+        switch (action.toUpperCase()) {
             case "W":
                 Treasure t = this.game.getCurrentRoom().getTreasure();
                 if (t instanceof Armor){
@@ -200,15 +252,23 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * Permet d'effectuer la demande d'équipage du trésor
+     * @param ihm   Objet IHM pour les input
+     * @return      la réponse de l'utilisateur
+     */
     private String askIfUseTreasure(IHM ihm){
         String userInput = "";
-        while (!userInput.equals("W") && !userInput.equals("D")){
+        while (!userInput.equalsIgnoreCase("W") && !userInput.equalsIgnoreCase("D")){
             System.out.println("What action will you take? W: Wear D:Discard");
             userInput = ihm.input();
         }
         return userInput;
     }
 
+    /**
+     * Permet d'afficher l'équipement de l'utilisateur
+     */
     public void showEquipement(){
         System.out.println("You are wearing :");
         if (this.getArmor() != null){
@@ -225,30 +285,55 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * Getter du nombre de combat gagné
+     */
     public Integer getFightWon(){
         return this.fightWon;
     }
 
+    /**
+     * Permet de retourner si l'utilisateur a une arme ou non
+     * @return True si le joueur a une arme
+     */
     public Boolean hasWeapon(){
         return !(this.weapon == null);
     }
 
+    /**
+     * Permet de retourner si l'utilisateur a une armure ou non
+     * @return True si le joueur a une armure
+     */
     public Boolean hasArmor(){
         return !(this.armor == null);
     }
 
+    /**
+     * Permet a l'utilisateur de porter une armure
+     * @param armor L'armure a porter
+     */
     public void wearArmor(Armor armor){
         this.armor = armor;
     }
 
+    /**
+     * Permet au joueur d'utiliser une arme
+     * @param weapon    L'arme a porter
+     */
     public void pickupWeapon (Weapon weapon){
         this.weapon = weapon;
     }
 
+    /**
+     * Getter de l'armure du joueur
+     */
     public Armor getArmor(){
         return this.armor;
     }
 
+    /**
+     * Getter de l'arme du joueur
+     */
     public Weapon getWeapon(){
         return this.weapon;
     }

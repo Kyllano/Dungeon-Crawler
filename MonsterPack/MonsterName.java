@@ -2,7 +2,14 @@ package MonsterPack;
 
 import java.util.Random;
 
+/**
+ * Classe permettant de récupérer des noms de mosntre aléatoire
+ */
 public class MonsterName {
+    /**
+     * Permet de retourner un adjectif de monstre aléatoire
+     * @return  L'adjectif de monstre
+     */
     public static String RandomMonsterAdjective(){
         String[] adjectives ={
             "Twin",
@@ -73,6 +80,10 @@ public class MonsterName {
         return adjectives[randomIndex];
     }
 
+    /**
+     * Permet de retourner un nom de monstre aléatoire
+     * @return  Le nom de monstre
+     */
     public static String RandomMonsterNickname(){
         String[] names ={
             "Brinecat",

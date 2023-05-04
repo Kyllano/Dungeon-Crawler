@@ -3,10 +3,12 @@ package GamePack;
 import java.io.Serializable;
 
 import DungeonPack.Dungeon;
-import DungeonPack.DungeonUtils;
 import MonsterPack.Monster;
 import DungeonPack.Room;
 
+/**
+ * Classe permettant de contenir le jeu (dongeon, joueur, ihm etc.)
+ */
 public class Game implements Serializable{
     private static final long serialVersionUID = 1L;
 
@@ -14,8 +16,11 @@ public class Game implements Serializable{
     private Dungeon dungeon;
     public transient IHM ihm;
     public Boolean gameOver;
-    public DM dm;
 
+    /**
+     * constructeur de la classe
+     * @param dungeonDimension  Taille du dongeon
+     */
     public Game(Integer dungeonDimension){
         super();
         this.dungeon = new Dungeon(dungeonDimension);
@@ -25,6 +30,21 @@ public class Game implements Serializable{
         this.gameOver = false;
     }
 
+    /**
+     * Permet d'afficher l'écran de début de jeu
+     */
+    public void StartGame(){
+        System.out.println(GameArt.getKnightArt());
+        System.out.println("Welcome to Dungeon Crawler, you wake up, naked, ready to take on the world with your fists and with a dream of surviving from this dungeon");
+        System.out.println("This is your curent location :");
+        IHM.showMap(this.getDungeon(), this.getPlayer());
+        System.out.println("you can type \'help\' if you do not know where to start");
+    }
+
+    /**
+     * Permet de lancer la fin de la partie et d'afficher l'écran de mort
+     * @param m Monstre qui a tué le joueur
+     */
     public void GameOver(Monster m){
         System.out.println(GameArt.getDeathArt());
         this.gameOver = true;
@@ -33,8 +53,11 @@ public class Game implements Serializable{
         System.out.println("Better luck next run soldier!");
     }
 
+    /**
+     * Permet de déplacer le joueur vers la salle nord si elle est présente
+     */
     public void movePlayerNorth(){
-        if (!DungeonUtils.isCoordsValid(player.x-1, player.y, dungeon.getDimension())){
+        if (!Dungeon.isCoordsValid(player.x-1, player.y, dungeon.getDimension())){
             return;
         }
         if (dungeon.isCellSpaceOccupied(player.x-1, player.y)){
@@ -43,8 +66,11 @@ public class Game implements Serializable{
         }
     }
 
+    /**
+     * Permet de déplacer le joueur vers la salle sud si elle est présente
+     */
     public void movePlayerSouth(){
-        if (!DungeonUtils.isCoordsValid(player.x+1, player.y, dungeon.getDimension())){
+        if (!Dungeon.isCoordsValid(player.x+1, player.y, dungeon.getDimension())){
             return;
         }
         if (dungeon.isCellSpaceOccupied(player.x+1, player.y)){
@@ -53,8 +79,11 @@ public class Game implements Serializable{
         }
     }
 
+    /**
+     * Permet de déplacer le joueur vers la salle ouest si elle est présente
+     */
     public void movePlayerWest(){
-        if (!DungeonUtils.isCoordsValid(player.x, player.y-1, dungeon.getDimension())){
+        if (!Dungeon.isCoordsValid(player.x, player.y-1, dungeon.getDimension())){
             return;
         }
         if (dungeon.isCellSpaceOccupied(player.x, player.y-1)){
@@ -63,8 +92,11 @@ public class Game implements Serializable{
         }
     }
 
+    /**
+     * Permet de déplacer le joueur vers la salle est si elle est présente
+     */
     public void movePlayerEast(){
-        if (!DungeonUtils.isCoordsValid(player.x, player.y+1, dungeon.getDimension())){
+        if (!Dungeon.isCoordsValid(player.x, player.y+1, dungeon.getDimension())){
             return;
         }
         if (dungeon.isCellSpaceOccupied(player.x, player.y+1)){
@@ -73,50 +105,82 @@ public class Game implements Serializable{
         }
     }
 
+    /**
+     * Permet de déplacer le joueur en mode DM vers le nord
+     */
     public void moveDMNorth(){
-        if (!DungeonUtils.isCoordsValid(player.x-1, player.y, dungeon.getDimension())){
+        if (!Dungeon.isCoordsValid(player.x-1, player.y, dungeon.getDimension())){
             return;
         }
         player.x -= 1;
     }
 
+    /**
+     * Permet de déplacer le joueur en mode DM vers le sud
+     */
     public void moveDMSouth(){
-        if (!DungeonUtils.isCoordsValid(player.x+1, player.y, dungeon.getDimension())){
+        if (!Dungeon.isCoordsValid(player.x+1, player.y, dungeon.getDimension())){
             return;
         }
         player.x += 1;
     }
 
+    /**
+     * Permet de déplacer le joueur en mode DM vers l'ouest
+     */
     public void moveDMWest(){
-        if (!DungeonUtils.isCoordsValid(player.x, player.y-1, dungeon.getDimension())){
+        if (!Dungeon.isCoordsValid(player.x, player.y-1, dungeon.getDimension())){
             return;
         }
         player.y -= 1;
     }
 
+    /**
+     * Permet de déplacer le joueur en mode DM vers l'est
+     */
     public void moveDMEast(){
-        if (!DungeonUtils.isCoordsValid(player.x, player.y+1, dungeon.getDimension())){
+        if (!Dungeon.isCoordsValid(player.x, player.y+1, dungeon.getDimension())){
             return;
         }
         player.y += 1;
     }
 
+    /**
+     * getter du monstre de la salle dans laquelle le joueur est présent
+     * @return
+     */
     public Monster getCurrentRoomMonster(){
         return this.dungeon.getRooms()[this.player.x][this.player.y].getMonster();
     }
     
+    /**
+     * getter de la salle dans laquelle le joueur est présent
+     * @return
+     */
     public Room getCurrentRoom(){
         return this.dungeon.getRooms()[this.player.x][this.player.y];
     }   
 
+    /**
+     * getter du joueur
+     * @return
+     */
     public Player getPlayer(){
         return this.player;
     }
 
+    /**
+     * Getter du dongeon
+     * @return
+     */
     public Dungeon getDungeon(){
         return this.dungeon;
     }
 
+    /**
+     * Getter de l'état du jeu (game over ou non?)
+     * @return
+     */
     public Boolean isGameOver(){
         return this.gameOver;
     }

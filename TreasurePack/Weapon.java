@@ -2,8 +2,14 @@ package TreasurePack;
 
 import java.util.Random;
 
+/**
+ * Classe représentant une arme que le joueur pourra utiliser
+ */
 public class Weapon extends Treasure{
 
+    /**
+     * Enum représentant les types d'arme (arc, épée, hache et pistolet)
+     */
     public enum WeaponType {
         BOW,
         SWORD,
@@ -14,6 +20,9 @@ public class Weapon extends Treasure{
     private Integer damagePoint;
     private WeaponType weaponType;
 
+    /**
+     * Constructeur de classe pour une arme aléatoire de raretée aléatoire
+     */
     public Weapon(){
         super(null, 0);
         Integer rarityRoll = new Random().nextInt(100);
@@ -46,6 +55,11 @@ public class Weapon extends Treasure{
         }
     }
 
+    /**
+     * Constructeur de classe pour une arme d'une raretée connue et de type connue
+     * @param rarity        La raretée de l'arme
+     * @param weaponType    Le type de l'arme
+     */
     public Weapon(int rarity, WeaponType weaponType){
         super(null, rarity);
         this.damagePoint = (this.rarity+1) + new Random().nextInt(2*(this.rarity)+1) - this.rarity;
@@ -70,6 +84,10 @@ public class Weapon extends Treasure{
         }
     }
 
+    /**
+     * Getter des points de dégat causé par l'arme
+     * @return
+     */
     public Integer getDamagePoint(){
         return this.damagePoint;
     }

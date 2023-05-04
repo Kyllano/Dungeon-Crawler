@@ -11,19 +11,34 @@ import TreasurePack.Armor;
 import TreasurePack.Treasure;
 import TreasurePack.Weapon;
 
+
+/**
+ * Classe contenant des fonctions permettant d'obtenir des fonctions d'affichage du jeu
+ */
 public class IHM{
 
     Scanner s;
 
+    /**
+     * Constructeur de classe
+     */
     public IHM(){
         super();
         this.s = new Scanner(System.in);
     }
 
+    /**
+     * Permet d'obtenir un input de la part de l'utilisateur
+     * @return
+     */
     public String input(){
         return s.nextLine();
     }
 
+    /**
+     * Permet d'obtenir un nombre de la part de l'utilisateur
+     * @return
+     */
     public Integer inputNumber(){
         while(true){
             try {
@@ -36,6 +51,9 @@ public class IHM{
         }
     }
 
+    /**
+     * Code zombie, ne pas y faire attention
+     */
     /* 
      public static void setConsoleToUTF8() {
          try {
@@ -49,6 +67,11 @@ public class IHM{
     */
 
 
+    /**
+     * Permet d"afficher la carte
+     * @param dungeon   Le dongeon a afficher
+     * @param player    Le joueur dans le dongeon
+     */
     public static void showMap(Dungeon dungeon, Player player){
         DiscoveryMap discoveryMap = dungeon.getDiscoveryMap();
         
@@ -97,6 +120,10 @@ public class IHM{
         System.out.println(toPrint);
     }
 
+    /**
+     * Permet d'afficher un monstre
+     * @param monster   Le monstrea a afficher
+     */
     public static void showMonster(Monster monster){
         if (monster == null) {
             System.out.println(MonsterArt.getDeadMonster());
@@ -113,6 +140,10 @@ public class IHM{
         showHPBar(m);
     }
 
+    /**
+     * Permet d'afficher la barre de vie d'une entitée
+     * @param e Entitée dont l'on doit afficher la barre de vie
+     */
     public static void showHPBar(Entity e){
         Integer hp = e.getHP();
         Integer maxHP = e.getMaxHP();
@@ -130,6 +161,47 @@ public class IHM{
         System.out.println(toPrint);
     }
 
+    /**
+     * Affichage du menu d'aide
+     */
+    public static void showHelp(){
+        System.out.println("Valid commands :");
+        System.out.println("->N : Go North");
+        System.out.println("->S : Go South");
+        System.out.println("->E : Go East");
+        System.out.println("->W : Go West");
+        System.out.println("->Map : show map");
+        System.out.println("->M : Show monster in current room");
+        System.out.println("->C : Engage combat with monster in current room");
+        System.out.println("->T : Show your current equipement");
+        System.out.println("->save : Saves the game");
+        System.out.println("->load : Loads the game");
+        System.out.println("->DM : Enter Dungeon Master mod");
+        System.out.println("->Quit : Quit the game");
+    }
+
+    /**
+     * Affichage du menu d'aide en mode DM
+     */
+    public static void showHelpDM(){
+        System.out.println("Valid commands :");
+        System.out.println("->N : Go North");
+        System.out.println("->S : Go South");
+        System.out.println("->E : Go East");
+        System.out.println("->W : Go West");
+        System.out.println("->Map : show map");
+        System.out.println("->M : Show monster in current room");
+        System.out.println("->Monster : Add/Change monster in the current room");
+        System.out.println("->Treasure : Add/Change treasure in the current room");
+        System.out.println("->Addroom : Add room at current position");
+        System.out.println("->Delroom : Delete room at current position");
+        System.out.println("->Quit : Quit DM mod");
+    }
+
+    /**
+     * Affichage d'un trésor
+     * @param t Trésor à afficher
+     */
     public static void showTreasure(Treasure t){
         System.out.println(t.getArt());
         System.out.println(t.getTitle());

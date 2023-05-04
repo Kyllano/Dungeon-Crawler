@@ -2,7 +2,14 @@ package TreasurePack;
 
 import java.util.Random;
 
+/**
+ * Classe permettant d'obtenir des noms et adjectifs pour les trésors, armes et armures
+ */
 public class TreasureName {
+    /**
+     * Permet d'obtenir un adjectif aléatoire pour un trésors
+     * @return  L'adjectif du trésor
+     */
     public static String getTreasureAdjective(){
         String[] adjectives ={
             "defensive",
@@ -46,6 +53,11 @@ public class TreasureName {
         return adjectives[new Random().nextInt(adjectives.length)];
     }
 
+
+    /**
+     * Permet d'obtenir un nom de type d'armure aléatoire
+     * @return  Le type d'armure
+     */
     public static String getArmorType(){
         String armorType[] = {
             "padded armor",
@@ -61,6 +73,10 @@ public class TreasureName {
         return armorType[new Random().nextInt(armorType.length)];
     }
 
+    /**
+     * Permet d'obtenir un nom de type d'arc aléatoire
+     * @return  Le type d'arc
+     */
     public static String getBowType(){
         String bowType[] = {
 
@@ -75,6 +91,10 @@ public class TreasureName {
         return bowType[new Random().nextInt(bowType.length)];
     }
 
+    /**
+     * Permet d'obtenir un nom de type d'épée aléatoire
+     * @return  Le type d'épée
+     */
     public static String getSwordType(){
         String swordType[] = {
             "longsword",
@@ -87,6 +107,10 @@ public class TreasureName {
         return swordType[new Random().nextInt(swordType.length)];
     }
 
+    /**
+     * Permet d'obtenir un nom de type d'hache aléatoire
+     * @return  Le type d'hache
+     */
     public static String getAxeType(){
         String axeType[] = {
             "short axe",
@@ -97,6 +121,10 @@ public class TreasureName {
         return axeType[new Random().nextInt(axeType.length)];
     }
 
+    /**
+     * Permet d'obtenir un nom de type de pistolet aléatoire
+     * @return  Le type de pistolet
+     */
     public static String getGunType(){
         String gunType[] = {
             "P2020",

@@ -10,9 +10,15 @@ import TreasurePack.Treasure;
 import TreasurePack.Weapon;
 import TreasurePack.Weapon.WeaponType;
 
+/**
+ * Classe qui contient uniquement des fonctions statiques permettant de passer en mode Dungeon Master
+ */
 public class DM {
-
     
+    /**
+     * Boucle principale du mod DM, permet de prendre l'input de l'utilisateur et d'appeler les fonctions correspondantes à chaque input
+     * @param game
+     */
     public static void askDM(Game game){
         String userInput = "";
         IHM ihm = game.ihm;
@@ -32,12 +38,16 @@ public class DM {
         game.getDungeon().setDiscoveryMap(discoveryMap);
         
 
+        System.out.println("Entering Dungeon Master mod");
         System.out.print("DM>");
 
-        while (!userInput.equals("quit")){
+        while (!userInput.equalsIgnoreCase("quit")){
             userInput = ihm.input();
 
-            switch (userInput) {
+            switch (userInput.toUpperCase()) {
+                case "HELP":
+                    IHM.showHelpDM();
+                    break;
                 case "N":
                     System.out.println("Going North!");
                     game.moveDMNorth();
@@ -58,17 +68,17 @@ public class DM {
                     game.moveDMWest();
                     IHM.showMap(game.getDungeon(), game.getPlayer());
                     break;
-                case "show":
+                case "M":
                     System.out.println("Showing monster in current Room");
                     IHM.showMonster(game.getCurrentRoomMonster());
                     break;
-                case "map":
+                case "MAP":
                     IHM.showMap(game.getDungeon(), game.getPlayer());
                     break;
                 case "T":
                     game.getPlayer().showEquipement();
                     break;
-                case "monster" :
+                case "MONSTER" :
                     if (game.getCurrentRoom() != null){
                         addMonster(game, ihm);
                         System.out.println("Monster placed into this room");
@@ -77,7 +87,7 @@ public class DM {
                         System.out.println("There is no room at this location");
                     }
                     break;
-                case "treasure" :
+                case "TREASURE" :
                     if (game.getCurrentRoom() != null){
                         addTreasure(game, ihm);
                         System.out.println("Treasure placed into this room");
@@ -86,12 +96,16 @@ public class DM {
                         System.out.println("There is no room at this location");
                     }
                     break;
-                case "addRoom" :
+                case "ADDROOM" :
                     addRoom(game);
                     break;
-                case "deleteRoom" :
+                case "DELROOM" :
                     deleteRoom(game);
                     break;
+                case "QUIT" :
+                    break;
+                default :
+                    System.out.println("Invalid input command, use \"help\"");
             }
             System.out.print("DM>");
 
@@ -104,6 +118,11 @@ public class DM {
 
 
 
+    /**
+     * Permet configurer un monstre demandé à l'utilisateur dans la salle courante
+     * @param game  L'objet jeu
+     * @param ihm   L'objet IHM
+     */
     private static void addMonster(Game game, IHM ihm){
         System.out.println("What will be the monster to add in the current room? (Skeleton, Zombie, Dragon, Crab, Wolf, Slime)");
         MonsterType monsterType = null;
@@ -136,6 +155,11 @@ public class DM {
         ihm.input();
     }
 
+    /**
+     * Permet de configurer un trésor demandé à l'utilisateur dans la salle courante
+     * @param game  L'objet jeu
+     * @param ihm   L'objet IHM
+     */
     private static void addTreasure(Game game, IHM ihm){
         
         //On demande si il veut une arme ou une armure
@@ -187,6 +211,10 @@ public class DM {
         ihm.input();
     }
 
+    /**
+     * Permet d'ajouter une salle vide à la coordonnée courante
+     * @param game
+     */
     private static void addRoom (Game game){
         if (game.getCurrentRoom() == null){
             game.getDungeon().getRooms()[game.getPlayer().x][game.getPlayer().y] = new Room(game.getPlayer().x, game.getPlayer().y);
@@ -197,6 +225,10 @@ public class DM {
         }
     }
 
+    /**
+     * Permet de supprime la salle à la coordonnée courante
+     * @param game
+     */
     private static void deleteRoom (Game game){
         if (game.getCurrentRoom() != null){
             game.getDungeon().getRooms()[game.getPlayer().x][game.getPlayer().y] = null;

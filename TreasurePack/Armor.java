@@ -2,11 +2,17 @@ package TreasurePack;
 
 import java.util.Random;
 
+/**
+ * Classe représentant les armures que le personnage portera
+ */
 public class Armor extends Treasure{
 
     Integer armorPoint;
     Integer armorHealth;
 
+    /**
+     * Constructeur de classe
+     */
     public Armor(){
         super(null, 0);
         Integer rarityRoll = new Random().nextInt(100);
@@ -24,6 +30,10 @@ public class Armor extends Treasure{
         this.art = TreasureArt.getArmorArt();
     }
 
+    /**
+     * Constructeur de classe, mais avec une raretée prédéfinie (entre 1 et 5)
+     * @param rarity    Raretée de l'armure
+     */
     public Armor(Integer rarity){
         super(null, rarity);
         this.armorPoint = (this.rarity+1) + new Random().nextInt(2*(this.rarity)+1) - this.rarity;
@@ -32,6 +42,11 @@ public class Armor extends Treasure{
         this.name = TreasureName.getTreasureAdjective() + " " + TreasureName.getArmorType();
     }
 
+    /**
+     * Permet a l'armure de prendre des dégats
+     * @param damage    Le nombre de dégat que l'armure prend
+     * @return          un nombre négatif si le joueur ne doit pas prendre de dégat, sinon le nombre de dégat que le joueur doit prendre
+     */
     public Integer takeDamage(Integer damage){
         this.armorHealth -= damage;
         if (this.armorHealth <= 0){
@@ -43,14 +58,25 @@ public class Armor extends Treasure{
         return -1; // si le joueur ne doit pas prendre de dégat, on peut renvoyer -1
     }
 
+    /**
+     * Permet de réparer l'armure
+     */
     public void repair(){
         this.armorHealth = this.armorPoint;
     }
 
+    /**
+     * Getter des points d'armure maximaux
+     * @return  Les points d'armure maximaux
+     */
     public Integer getArmorPoint(){
         return this.armorPoint;
     }
 
+    /**
+     * Getter des points d'armure restants
+     * @return  Les points d'armures restants
+     */
     public Integer getArmorHealth(){
         return this.armorHealth;
     }

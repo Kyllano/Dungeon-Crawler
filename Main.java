@@ -1,42 +1,50 @@
 import GamePack.DM;
 import GamePack.Game;
-import GamePack.GameArt;
 import GamePack.IHM;
 import GamePack.Save;
 
+/**
+ * Programme principale a lancer pour lancer le jeu
+ */
 public class Main {
     public static void main(String[] args) {
-        System.out.println(GameArt.getKnightArt());
+        
         Game game = new Game(20);
+        game.StartGame();
 
         String userInput = "";
         IHM ihm = game.ihm;
-        IHM.showMap(game.getDungeon(), game.getPlayer());
         
         System.out.print(">");
-        while (!userInput.equals("quit") && ! game.isGameOver()){
+        while (!userInput.equalsIgnoreCase("quit") && ! game.isGameOver()){
             userInput = ihm.input();
             
 
-            switch (userInput) {
-
+            switch (userInput.toUpperCase()) {
+                case "HELP" :
+                    IHM.showHelp();
+                    break;
                 case "N":
                     System.out.println("Going North!");
+                    System.out.println("Current position :");
                     game.movePlayerNorth();
                     IHM.showMap(game.getDungeon(), game.getPlayer());
                     break;
                 case "S":
                     System.out.println("Going South!");
+                    System.out.println("Current position :");
                     game.movePlayerSouth();
                     IHM.showMap(game.getDungeon(), game.getPlayer());
                     break;
                 case "E":
                     System.out.println("Going East!");
+                    System.out.println("Current position :");
                     game.movePlayerEast();
                     IHM.showMap(game.getDungeon(), game.getPlayer());
                     break;
                 case "W":
                     System.out.println("Going West!");
+                    System.out.println("Current position :");
                     game.movePlayerWest();
                     IHM.showMap(game.getDungeon(), game.getPlayer());
                     break;
@@ -44,29 +52,29 @@ public class Main {
                     System.out.println("Engagine combat !");
                     game.getPlayer().EngageCombat(game.getCurrentRoomMonster(), game.ihm);
                     break;
-                case "show":
+                case "M":
                     System.out.println("Showing monster in current Room");
                     IHM.showMonster(game.getCurrentRoomMonster());
                     break;
-                case "map":
+                case "MAP":
                     IHM.showMap(game.getDungeon(), game.getPlayer());
                     break;
                 case "T":
                     game.getPlayer().showEquipement();
                     break;
-                case "heal":
-                    System.out.println("You heal");
-                    game.getPlayer().fullHeal();
-                    break;
-                case "save":
+                case "SAVE":
                     Save.saveGameIHM(ihm, game);
                     break;
-                case "load":
+                case "LOAD":
                     game = Save.loadGameIHM(ihm);
                     break;
                 case "DM" :
                     DM.askDM(game);
                     break;
+                case "QUIT" :
+                    break;
+                default :
+                    System.out.println("Invalid input command, use \"help\"");
             }
             System.out.print(">");
 

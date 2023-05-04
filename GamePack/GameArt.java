@@ -1,7 +1,15 @@
 package GamePack;
 
+
+/**
+ * Permet d'obtenir les art ASCII des écran de début, fin et fin de combat
+ */
 public class GameArt {
 
+    /**
+     * Permet d'obtenir l'art ASCII d'une victoire de combat
+     * @return
+     */
     public static String getCombatWinArt(){
         String art = "";
         /*
@@ -30,6 +38,10 @@ public class GameArt {
         return art;        
     }
 
+    /**
+     * Permet d'obtenir l'art ASCII d'une perte de combat
+     * @return
+     */
     public static String getDeathArt(){
         String art = "";
 
@@ -69,9 +81,19 @@ public class GameArt {
         return art;
     }
 
+    /**
+     * Permet d'obtenir l'art ASCII du début de jeu
+     * @return
+     */
     public static String getKnightArt(){
         String art = "";
 
+        art += "          ██████╗ ██╗   ██╗███╗   ██╗ ██████╗ ███████╗ ██████╗ ███╗   ██╗            \n";
+        art += "          ██╔══██╗██║   ██║████╗  ██║██╔════╝ ██╔════╝██╔═══██╗████╗  ██║            \n";
+        art += "          ██║  ██║██║   ██║██╔██╗ ██║██║  ███╗█████╗  ██║   ██║██╔██╗ ██║            \n";
+        art += "          ██║  ██║██║   ██║██║╚██╗██║██║   ██║██╔══╝  ██║   ██║██║╚██╗██║            \n";
+        art += "          ██████╔╝╚██████╔╝██║ ╚████║╚██████╔╝███████╗╚██████╔╝██║ ╚████║            \n";
+        art += "          ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝            \n";
         art += "                        /|                                                           \n";
         art += "                      /'||                                                           \n";
         art += "                     |  ||                                                           \n";
@@ -79,12 +101,12 @@ public class GameArt {
         art += "                     |  ||                                                           \n";
         art += "                     |  ||                                                           \n";
         art += "                     |  ||                                                           \n";
-        art += "                     |  ||                                                           \n";
-        art += "                     |  ||                                                           \n";
-        art += "                     |  ||                                                           \n";
-        art += "                     |  ||                                                           \n";
-        art += "                     |  ||                                                           \n";
-        art += "                     |  ||                                                           \n";
+        art += "             ██████╗██████╗  █████╗ ██╗    ██╗██╗     ███████╗██████╗                \n";
+        art += "            ██╔════╝██╔══██╗██╔══██╗██║    ██║██║     ██╔════╝██╔══██╗               \n";
+        art += "            ██║     ██████╔╝███████║██║ █╗ ██║██║     █████╗  ██████╔╝               \n";
+        art += "            ██║     ██╔══██╗██╔══██║██║███╗██║██║     ██╔══╝  ██╔══██╗               \n";
+        art += "            ╚██████╗██║  ██║██║  ██║╚███╔███╔╝███████╗███████╗██║  ██║               \n";
+        art += "             ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚══╝╚══╝ ╚══════╝╚══════╝╚═╝  ╚═╝               \n";
         art += "                     |  ||                                                           \n";
         art += "                     |  ||                                                           \n";
         art += "                     |  ||                                                           \n";

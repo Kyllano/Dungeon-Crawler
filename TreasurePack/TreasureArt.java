@@ -1,6 +1,14 @@
 package TreasurePack;
 
+/**
+ * Classe permettant d'obtenir les art ASCII des trésor, armure et armes
+ */
 public class TreasureArt {
+
+    /**
+     * Permet d'obtenir l'art ASCII des trésors
+     * @return  L'art ASCII des trésors
+     */
     public static String getTreasureArt(){
         String art = "";
 
@@ -27,6 +35,10 @@ public class TreasureArt {
            return art;
     }
 
+    /**
+     * Permet d'obtenir l'art ASCII des armures
+     * @return  L'art ASCII des armures
+     */
     public static String getArmorArt(){
         String art = "";
 
@@ -53,6 +65,10 @@ public class TreasureArt {
         return art;
     }
 
+    /**
+     * Permet d'obtenir l'art ASCII des arcs
+     * @return  L'art ASCII des arcs
+     */
     public static String getBowArt(){
         String art = "";
 
@@ -79,6 +95,10 @@ public class TreasureArt {
         return art;
     }
 
+    /**
+     * Permet d'obtenir l'art ASCII des haches
+     * @return  L'art ASCII des haches
+     */
     public static String getAxeArt(){
         String art = "";
 
@@ -104,6 +124,10 @@ public class TreasureArt {
         return art;
     }
 
+    /**
+     * Permet d'obtenir l'art ASCII des pistolets
+     * @return  L'art ASCII des pistolets
+     */
     public static String getGunArt(){
         String art = "";
         
@@ -126,6 +150,10 @@ public class TreasureArt {
         return art;
     }
 
+    /**
+     * Permet d'obtenir l'art ASCII des épées
+     * @return  L'art ASCII des épées
+     */
     public static String getSwordArt(){
         String art = "";
         

@@ -1,6 +1,13 @@
 package MonsterPack;
 
+/**
+ * Classe contenant des fonctions statiques permettant de récupérer les art ASCII selon les types de monstre
+ */
 public class MonsterArt {
+    /**
+     * Permet de retourner l'art d'un monstre mort
+     * @return
+     */
     public static String getDeadMonster(){
         String art = "";
 
@@ -32,6 +39,10 @@ public class MonsterArt {
         return art;
     }
 
+    /**
+     * Permet de récupérer l'art ASCII du dragon
+     * @return  l'art ASCII
+     */
     public static String getDragonArt(){
         String art = "";
 
@@ -54,6 +65,10 @@ public class MonsterArt {
         return art;
     }
 
+    /**
+     * Permet de récupérer l'art ASCII du squelette
+     * @return  l'art ASCII
+     */
     public static String getSkeletonArt(){
         String art = "";
 
@@ -80,6 +95,10 @@ public class MonsterArt {
         return art;
     }
 
+    /**
+     * Permet de récupérer l'art ASCII du Zombie
+     * @return  l'art ASCII
+     */
     public static String getZombieArt(){
         String art = "";
 
@@ -101,6 +120,10 @@ public class MonsterArt {
         return art;
     }
 
+    /**
+     * Permet de récupérer l'art ASCII du crabe
+     * @return  l'art ASCII
+     */
     public static String getCrabArt(){
         String art = "";
 
@@ -116,6 +139,10 @@ public class MonsterArt {
         return art;
     }
 
+    /**
+     * Permet de récupérer l'art ASCII du loup
+     * @return  l'art ASCII
+     */
     public static String getWolfArt(){
         String art ="";
         art += "                              __            \n";
@@ -147,6 +174,10 @@ public class MonsterArt {
         return art;
     }
 
+    /**
+     * Permet de récupérer l'art ASCII du slime
+     * @return  l'art ASCII
+     */
     public static String getSlimeArt(){
         String art ="";
 
