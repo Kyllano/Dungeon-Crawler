@@ -72,11 +72,16 @@ public class Player extends Entity {
             System.out.println("You feel stronger and get 1 more HP");
 
             //find treasure
-            System.out.println(TreasureArt.getTreasureArt());
-            System.out.println("You found a treasure!");
-            Boolean openTreasure = checkIfOpenTreasure(ihm);
-            if (openTreasure){
-                checkIfUseTreasure(ihm);
+            if (this.game.getCurrentRoom().getTreasure() != null){
+                System.out.println(TreasureArt.getTreasureArt());
+                System.out.println("You found a treasure!");
+                Boolean openTreasure = checkIfOpenTreasure(ihm);
+                if (openTreasure){
+                    checkIfUseTreasure(ihm);
+                }
+            }
+            else{
+                System.out.println("There is no treasure in this room");
             }
 
 
