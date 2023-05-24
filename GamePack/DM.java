@@ -196,7 +196,7 @@ public class DM {
             System.out.println("The rarity of the treasure must be between 1 and 5");
             userInput = ihm.inputNumber();
         }
-        rarity = userInput;
+        rarity = userInput-1;
 
         Treasure treasure;
         if (userInputTreasure.equalsIgnoreCase("weapon")){
